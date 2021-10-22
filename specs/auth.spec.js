@@ -5,7 +5,7 @@ describe('Auth', () => {
     beforeEach(async () => {
         await LoginPage.open();
     })
-    it.skip('successful login', async () => {
+    it('successful login', async () => {
         await LoginPage.login('muraways@gmail.com', 'Nfy.irf1990');
         await expect(ProfilePage.iconAvatar).toBeDisplayed();
     });

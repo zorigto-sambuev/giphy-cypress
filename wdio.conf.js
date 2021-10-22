@@ -1,6 +1,7 @@
+const allure = require('@wdio/allure-reporter');
 exports.config = {
     specs: [
-        './specs/**/trend.spec.js'
+        './specs/**/*.spec.js'
     ],
 
     maxInstances: 1,
@@ -19,9 +20,17 @@ exports.config = {
     connectionRetryCount: 1,
     services: ['devtools'],
     framework: 'mocha',
-    reporters: ['spec'],
+    reporters: ['spec', ['allure', {
+        disableWebdriverStepsReporting: true
+    }]],
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
     },
+    afterTest: async function (test, context, result){
+        if (test.failed || result.error) {
+            await browser.takeScreenshot(); //there is need
+            allure.addAttachment('URL', await browser.getUrl(), 'text/plain')
+        }
+    }
 }
