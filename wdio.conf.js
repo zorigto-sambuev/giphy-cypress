@@ -1,6 +1,6 @@
 exports.config = {
     specs: [
-        './specs/**/*.spec.js'
+        './specs/**/trend.spec.js'
     ],
 
     maxInstances: 1,
