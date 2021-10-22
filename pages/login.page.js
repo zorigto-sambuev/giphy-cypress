@@ -1,17 +1,17 @@
 import Page from './page';
 class LoginPage extends Page {
 
-    get inputUsername () { return $('#username') }
-    get inputPassword () { return $('#password') }
-    get btnSubmit () { return $('button[type="submit"]') }
+    get inputEmail () { return $('(//input[@type="email"])') }
+    get inputPassword () { return $('(//input[@type="password"])') }
+    get buttonLogIn () { return $('.login-form__CTAButton-sc-1vrkdbu-3')}
 
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
+    async login(email, password) {
+        await this.inputEmail.setValue(email);
         await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+        await this.buttonLogIn.click();
     }
     open () {
-        return super.open('login');
+        return super.open('/login');
     }
 }
 
