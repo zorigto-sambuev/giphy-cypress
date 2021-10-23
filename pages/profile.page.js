@@ -1,7 +1,7 @@
 import Page from './page';
 
 class ProfilePage extends Page {
-    get iconAvatar() { return $('//div[@class=\'Avatar-sc-94lmf3 drGXSQ\']') }
+    get iconAvatar() { return $('div[class=\'Avatar-sc-94lmf3 drGXSQ\']') }
 
 }
 
