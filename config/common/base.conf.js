@@ -1,17 +1,11 @@
-const allure = require('@wdio/allure-reporter');
+const hooks = require('./hooks.conf');
+
 exports.config = {
     specs: [
         './specs/**/*.spec.js'
     ],
 
     maxInstances: 1,
-
-    capabilities: [{
-        maxInstances: 1,
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-    }],
-
     logLevel: 'info',
     bail: 0,
     baseUrl: 'https://giphy.com/',
@@ -27,10 +21,5 @@ exports.config = {
         ui: 'bdd',
         timeout: 60000
     },
-    afterTest: async function (test, context, result){
-        if (test.failed || result.error) {
-            await browser.takeScreenshot(); //there is need
-            allure.addAttachment('URL', await browser.getUrl(), 'text/plain')
-        }
-    }
+    ...hooks
 }
